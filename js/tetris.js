@@ -2,6 +2,9 @@ import BLOCKS from "./blocks.js";
 
 // DOM
 const playground = document.querySelector(".playground > ul");
+const gameText = document.querySelector(".game-text");
+const scoreDisplay = document.querySelector(".score");
+const restartButton = document.querySelector(".game-text > button");
 
 // Setting
 const GAME_ROWS = 20;
@@ -60,8 +63,12 @@ function renderBlocks(moveType = "") {
       target.classList.add(type, "moving");
     } else {
       tempMovingItem = { ...movingItem };
+      if (moveType === "retry") {
+        clearInterval(downInterval);
+        showGameoverText();
+      }
       setTimeout(() => {
-        renderBlocks();
+        renderBlocks("retry");
         if (moveType === "top") {
           seizeBlock();
         }
@@ -85,7 +92,6 @@ function seizeBlock() {
 
 function checkMatch() {
   const childNodes = playground.childNodes;
-  console.log(childNodes);
   childNodes.forEach((child) => {
     let matched = true;
     child.childNodes[0].childNodes.forEach((li) => {
@@ -96,6 +102,8 @@ function checkMatch() {
     if (matched) {
       child.remove();
       prependNewLine();
+      score += 10;
+      scoreDisplay.innerText = score;
     }
   });
   gennerateNewBlock();
@@ -144,6 +152,10 @@ function dropBlock() {
   }, 10);
 }
 
+function showGameoverText() {
+  gameText.style.display = "flex";
+}
+
 // event handler
 document.addEventListener("keydown", (e) => {
   switch (e.keyCode) {
@@ -165,4 +177,10 @@ document.addEventListener("keydown", (e) => {
     default:
       break;
   }
+});
+
+restartButton.addEventListener("click", () => {
+  playground.innerHTML = "";
+  gameText.style.display = "none";
+  init();
 });
