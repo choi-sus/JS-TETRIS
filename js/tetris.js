@@ -92,6 +92,7 @@ function seizeBlock() {
 
 function checkMatch() {
   const childNodes = playground.childNodes;
+  let childLength = 0;
   childNodes.forEach((child) => {
     let matched = true;
     child.childNodes[0].childNodes.forEach((li) => {
@@ -100,9 +101,10 @@ function checkMatch() {
       }
     });
     if (matched) {
+      childLength++;
       child.remove();
       prependNewLine();
-      score += 10;
+      score += 10 * childLength;
       scoreDisplay.innerText = score;
     }
   });
@@ -182,5 +184,6 @@ document.addEventListener("keydown", (e) => {
 restartButton.addEventListener("click", () => {
   playground.innerHTML = "";
   gameText.style.display = "none";
+  scoreDisplay.innerText = 0;
   init();
 });
