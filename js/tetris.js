@@ -119,6 +119,13 @@ function changeDirection() {
   renderBlocks();
 }
 
+function dropBlock() {
+  clearInterval(downInterval);
+  downInterval = setInterval(() => {
+    moveBlock("top", 1);
+  }, 10);
+}
+
 // event handler
 document.addEventListener("keydown", (e) => {
   switch (e.keyCode) {
@@ -133,6 +140,10 @@ document.addEventListener("keydown", (e) => {
       break;
     case 38:
       changeDirection();
+      break;
+    case 32:
+      dropBlock();
+      break;
     default:
       break;
   }
