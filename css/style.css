@@ -39,6 +39,21 @@ body {
   outline: 1px solid #ccc;
 }
 
+.square {
+  background-color: rgb(243, 115, 46);
+}
+.bar {
+  background-color: salmon;
+}
 .tree {
   background-color: #67c23a;
+}
+.zee {
+  background-color: #e6a23c;
+}
+.elLeft {
+  background-color: #9f57be;
+}
+.elRight {
+  background-color: #16a085;
 }

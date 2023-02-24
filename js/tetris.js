@@ -1,3 +1,5 @@
+import BLOCKS from "./blocks.js";
+
 // DOM
 const playground = document.querySelector(".playground > ul");
 
@@ -10,36 +12,8 @@ let score = 0;
 let duration = 500;
 let downInterval;
 let tempMovingItem;
-const BLOCKS = {
-  tree: [
-    [
-      [2, 1],
-      [0, 1],
-      [1, 0],
-      [1, 1],
-    ],
-    [
-      [1, 2],
-      [0, 1],
-      [1, 0],
-      [1, 1],
-    ],
-    [
-      [1, 2],
-      [0, 1],
-      [2, 1],
-      [1, 1],
-    ],
-    [
-      [2, 1],
-      [1, 2],
-      [1, 0],
-      [1, 1],
-    ],
-  ],
-};
 const movingItem = {
-  type: "tree",
+  type: "",
   direction: 0,
   top: 0,
   left: 0,
@@ -51,16 +25,16 @@ init();
 function init() {
   tempMovingItem = { ...movingItem };
 
-  for (let i = 0; i < 20; i++) {
+  for (let i = 0; i < GAME_ROWS; i++) {
     prependNewLine();
   }
-  renderBlocks();
+  gennerateNewBlock();
 }
 
 function prependNewLine() {
   const li = document.createElement("li");
   const ul = document.createElement("ul");
-  for (let j = 0; j < 10; j++) {
+  for (let j = 0; j < GAME_COLS; j++) {
     const matrix = document.createElement("li");
     ul.prepend(matrix);
   }
@@ -110,6 +84,14 @@ function seizeBlock() {
 }
 
 function gennerateNewBlock() {
+  clearInterval(downInterval);
+  downInterval = setInterval(() => {
+    moveBlock("top", 1);
+  }, duration);
+
+  const blockArray = Object.entries(BLOCKS);
+  const randomIndex = Math.floor(Math.random() * blockArray.length);
+  movingItem.type = blockArray[randomIndex][0];
   movingItem.top = 0;
   movingItem.left = 3;
   movingItem.direction = 0;
