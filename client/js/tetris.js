@@ -39,6 +39,11 @@ function prependNewLine() {
   const ul = document.createElement("ul");
   for (let j = 0; j < GAME_COLS; j++) {
     const matrix = document.createElement("li");
+    const inner = document.createElement("span");
+    const sxInner = document.createElement("span");
+
+    inner.prepend(sxInner);
+    matrix.prepend(inner);
     ul.prepend(matrix);
   }
   li.prepend(ul);

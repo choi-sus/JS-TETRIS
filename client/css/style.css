@@ -7,9 +7,14 @@ ul {
   list-style: none;
 }
 
+html,
 body {
   height: 100%;
+}
+
+body {
   overflow: hidden;
+  background-color: #141414;
 }
 
 .game-text {
@@ -57,26 +62,83 @@ body {
 }
 
 .playground > ul > li > ul > li {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 25px;
   height: 25px;
-  outline: 1px solid #ccc;
+}
+
+.playground > ul > li > ul > li > span {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 20px;
+  height: 20px;
+}
+
+.playground > ul > li > ul > li > span > span {
+  display: block;
+  width: 15px;
+  height: 15px;
 }
 
 .square {
-  background-color: #2c82c9;
+  background-color: rgb(59, 84, 165);
 }
+.square > span {
+  background-color: rgb(118, 137, 196);
+}
+.square > span > span {
+  background-color: rgb(79, 111, 182);
+}
+
 .bar {
-  background-color: salmon;
+  background-color: rgb(214, 30, 60);
 }
+.bar > span {
+  background-color: rgb(241, 108, 107);
+}
+.bar > span > span {
+  background-color: rgb(236, 42, 75);
+}
+
 .tree {
-  background-color: #67c23a;
+  background-color: rgb(62, 170, 212);
 }
+.tree > span {
+  background-color: rgb(120, 205, 244);
+}
+.tree > span > span {
+  background-color: rgb(54, 192, 240);
+}
+
 .zee {
-  background-color: #e6a23c;
+  background-color: rgb(88, 178, 71);
 }
+.zee > span {
+  background-color: rgb(150, 204, 110);
+}
+.zee > span > span {
+  background-color: rgb(115, 191, 68);
+}
+
 .elLeft {
-  background-color: #9f57be;
+  background-color: rgb(158, 35, 126);
 }
+.elLeft > span {
+  background-color: rgb(193, 111, 173);
+}
+.elLeft > span > span {
+  background-color: rgb(179, 63, 151);
+}
+
 .elRight {
-  background-color: #16a085;
+  background-color: rgb(220, 159, 39);
+}
+.elRight > span {
+  background-color: rgb(246, 197, 100);
+}
+.elRight > span > span {
+  background-color: rgb(242, 181, 42);
 }
